@@ -22,7 +22,7 @@ public class CardOrderTest {
 
     @BeforeAll
     static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "D:\\chromedriver");
+        System.setProperty("webdriver.chrome.driver", "\\chromedriver");
 
     }
 
