@@ -1,5 +1,6 @@
 package ru.netology;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +23,8 @@ public class CardOrderTest {
 
     @BeforeAll
     static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "./driver/linux/chromedriver");
+        //System.setProperty("webdriver.chrome.driver", "./driver/linux/chromedriver");
+        WebDriverManager.chromedriver().setup();
 
     }
 
@@ -70,5 +72,6 @@ public class CardOrderTest {
         String actualMessage = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualMessage.trim());
     }
+
 
 }
