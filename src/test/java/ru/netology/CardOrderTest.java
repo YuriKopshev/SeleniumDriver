@@ -20,10 +20,8 @@ public class CardOrderTest {
     ChromeOptions options = new ChromeOptions();
 
 
-
     @BeforeAll
     static void setUpAll() {
-        //System.setProperty("webdriver.chrome.driver", "./driver/linux/chromedriver");
         WebDriverManager.chromedriver().setup();
 
     }
@@ -41,37 +39,14 @@ public class CardOrderTest {
         driver = null;
     }
 
-
     @Test
-    void shouldTestPositive() {
+    void shouldSuccessfullySendForm() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Юрий");
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Юрий Петров");
         driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79270000000");
         driver.findElement(By.cssSelector("[class='checkbox__box']")).click();
         driver.findElement(By.cssSelector("[type='button']")).click();
         String actualMessage = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualMessage.trim());
     }
-    @Test
-    void shouldTestDashName() {
-        driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[type='text']")).sendKeys("-");
-        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79270000000");
-        driver.findElement(By.cssSelector("[class='checkbox__box']")).click();
-        driver.findElement(By.cssSelector("[type='button']")).click();
-        String actualMessage = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualMessage.trim());
-    }
-    @Test
-    void shouldTestNonexistentCode() {
-        driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Юрий");
-        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+19270000000");
-        driver.findElement(By.cssSelector("[class='checkbox__box']")).click();
-        driver.findElement(By.cssSelector("[type='button']")).click();
-        String actualMessage = driver.findElement(By.cssSelector("[data-test-id='order-success']")).getText();
-        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualMessage.trim());
-    }
-
-
 }
